@@ -531,3 +531,7 @@ footer {
     opacity: 1;
   }
 }
+
+.invalid {
+  border: 1px solid red;
+}
