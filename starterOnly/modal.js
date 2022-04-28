@@ -10,30 +10,46 @@ function editNav() {
 
 // DOM Elements
 const modalbg = document.querySelector('.bground');
+const modalbg_f = document.querySelector('.bground-f');
 const modalBtn = document.querySelectorAll('.modal-btn, .close');
+const modalBtn_f = document.querySelectorAll('.modal-btn-f, .close-f');
 const form = document.querySelector('#signup');
 const formData = document.querySelectorAll('.formData');
 
 const toggleHidden = (element) => element.classList.toggle('hidden');
+
+let validation_score = 0;
+let radio_check = false;
 
 //toggle modal event
 modalBtn.forEach((btn) =>
   btn.addEventListener('click', () => toggleHidden(modalbg))
 );
 
+modalBtn_f.forEach((btn) =>
+  btn.addEventListener('click', () => toggleHidden(modalbg_f))
+);
+
 //validity check function
 const validitycheck = (inputElement) => {
   inputElement.setCustomValidity('');
-
-  if (inputElement.name === 'first' || inputElement.name === 'last') {
+  // console.log(inputElement);
+  if (inputElement.name === 'first') {
     if (inputElement.validity.valueMissing || inputElement.validity.tooShort) {
-      inputElement.setCustomValidity(
-        'Veuillez entrer 2 caractères ou plus pour le champ du nom.'
-      );
-      inputElement.classList.add('invalid');
+      formData[0].setAttribute('data-error-visible', 'true');
       return;
     }
-    inputElement.classList.remove('invalid');
+    formData[0].setAttribute('data-error-visible', 'false');
+    validation_score++;
+  }
+
+  if (inputElement.name === 'last') {
+    if (inputElement.validity.valueMissing || inputElement.validity.tooShort) {
+      formData[1].setAttribute('data-error-visible', 'true');
+      return;
+    }
+    formData[1].setAttribute('data-error-visible', 'false');
+    validation_score++;
   }
 
   if (inputElement.name === 'email') {
@@ -41,13 +57,11 @@ const validitycheck = (inputElement) => {
       inputElement.validity.valueMissing ||
       inputElement.validity.typeMismatch
     ) {
-      inputElement.setCustomValidity(
-        'Veuillez entrer une adresse mail valide.'
-      );
-      inputElement.classList.add('invalid');
+      formData[2].setAttribute('data-error-visible', 'true');
       return;
     }
-    inputElement.classList.remove('invalid');
+    formData[2].setAttribute('data-error-visible', 'false');
+    validation_score++;
   }
 
   if (inputElement.name === 'birthdate') {
@@ -55,62 +69,47 @@ const validitycheck = (inputElement) => {
       inputElement.validity.typeMismatch ||
       inputElement.validity.valueMissing
     ) {
-      inputElement.setCustomValidity(
-        'Vous devez entrer votre date de naissance.'
-      );
-      inputElement.classList.add('invalid');
+      formData[3].setAttribute('data-error-visible', 'true');
       return;
     }
-    inputElement.classList.remove('invalid');
+    formData[3].setAttribute('data-error-visible', 'false');
+    validation_score++;
   }
 
   if (inputElement.name === 'quantity') {
+    console.log(inputElement);
     if (
       inputElement.validity.typeMismatch ||
       inputElement.validity.valueMissing
     ) {
-      inputElement.setCustomValidity('Veuillez entrer un nombre.');
-      inputElement.classList.add('invalid');
+      formData[4].setAttribute('data-error-visible', 'true');
       return;
     }
-    inputElement.classList.remove('invalid');
+    formData[4].setAttribute('data-error-visible', 'false');
+    validation_score++;
   }
 
-  if (inputElement.name === 'quantity') {
-    if (
-      inputElement.validity.typeMismatch ||
-      inputElement.validity.valueMissing
-    ) {
-      inputElement.setCustomValidity('Veuillez entrer un nombre.');
-      inputElement.classList.add('invalid');
-      return;
-    }
-    inputElement.classList.remove('invalid');
-  }
-
-  if (inputElement.name === 'loctation') {
+  if (inputElement.name === 'location') {
     if (inputElement.validity.valueMissing) {
-      inputElement.setCustomValidity('Vous devez choisir une option.');
-      inputElement.classList.add('invalid');
+      formData[5].setAttribute('data-error-visible', 'true');
       return;
     }
-    inputElement.classList.remove('invalid');
+    formData[5].setAttribute('data-error-visible', 'false');
+    validation_score++;
   }
 
   if (inputElement.name === 'TOScheckbox') {
     if (inputElement.validity.valueMissing) {
-      inputElement.setCustomValidity(
-        'Vous devez vérifier que vous acceptez les termes et conditions.'
-      );
-      inputElement.classList.add('invalid');
+      formData[6].setAttribute('data-error-visible', 'true');
       return;
     }
-    inputElement.classList.remove('invalid');
+    formData[6].setAttribute('data-error-visible', 'false');
+    validation_score++;
   }
 };
 
 Array.from(form).forEach((formElement) => {
-  formElement.addEventListener('change', (event) => {
+  formElement.addEventListener('submit', (event) => {
     validitycheck(event.currentTarget);
   });
   formElement.addEventListener('invalid', (event) => {
@@ -119,7 +118,16 @@ Array.from(form).forEach((formElement) => {
 });
 
 form?.addEventListener('submit', (event) => {
-  Array.from(event.currentTarget).forEach(validitycheck);
   event.preventDefault();
+  validation_score = 0;
+  Array.from(event.currentTarget).forEach(validitycheck);
+  if (validation_score !== 12) {
+    console.log(validation_score);
+    return;
+  } else {
+    toggleHidden(modalbg);
+  }
+  console.log(validation_score);
   console.log('form sent');
+  toggleHidden(modalbg_f);
 });

@@ -53,8 +53,18 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <form id="signup" name="reserve" action="index.html" method="get">
-              <div class="formData">
+            <form
+              id="signup"
+              name="reserve"
+              action="index.html"
+              method="get"
+              novalidate
+            >
+              <div
+                data-error="* Veuillez entrer 2 caractères ou plus pour le champ du prénom."
+                data-error-visible="false"
+                class="formData"
+              >
                 <label>Prénom</label><br />
                 <input
                   class="text-control"
@@ -65,7 +75,11 @@
                   required
                 /><br />
               </div>
-              <div class="formData">
+              <div
+                data-error="* Veuillez entrer 2 caractères ou plus pour le champ du nom."
+                data-error-visible="false"
+                class="formData"
+              >
                 <label>Nom</label><br />
                 <input
                   class="text-control"
@@ -76,7 +90,11 @@
                   required
                 /><br />
               </div>
-              <div class="formData">
+              <div
+                data-error="* Veuillez entrer une adresse mail valide"
+                data-error-visible="false"
+                class="formData"
+              >
                 <label>E-mail</label><br />
                 <input
                   class="text-control"
@@ -86,7 +104,11 @@
                   required
                 /><br />
               </div>
-              <div class="formData">
+              <div
+                data-error="* Vous devez entrer votre date de naissance."
+                data-error-visible="false"
+                class="formData"
+              >
                 <label>Date de naissance</label><br />
                 <input
                   class="text-control"
@@ -96,7 +118,11 @@
                   required
                 /><br />
               </div>
-              <div class="formData">
+              <div
+                data-error="* Entrez le nombre de tournois participé."
+                data-error-visible="false"
+                class="formData"
+              >
                 <label
                   >À combien de tournois GameOn avez-vous déjà participé
                   ?</label
@@ -114,7 +140,11 @@
               <p class="text-label">
                 A quel tournoi souhaitez-vous participer cette année ?
               </p>
-              <div class="formData">
+              <div
+                data-error="* Vous devez choisir une option."
+                data-error-visible="false"
+                class="formData"
+              >
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -184,7 +214,11 @@
                 >
               </div>
 
-              <div class="formData">
+              <div
+                data-error="* Vous devez vérifier que vous acceptez les termes et conditions."
+                data-error-visible="false"
+                class="formData"
+              >
                 <input
                   class="checkbox-input"
                   type="checkbox"
@@ -193,7 +227,7 @@
                   checked
                   required
                 />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1" required idate>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -214,6 +248,15 @@
             </form>
           </div>
         </div>
+      </div>
+
+      <div class="bground-f hidden">
+        <div class="content">
+          <span class="close-f"></span>
+          <div class="modal-body-f">
+            Inscription terminer !<br></br>  
+            <button class="btn-signup modal-btn-f">Revenir sur le site</button>
+          </div>
       </div>
     </main>
     <footer>
