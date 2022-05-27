@@ -19,7 +19,6 @@ const formData = document.querySelectorAll('.formData');
 const toggleHidden = (element) => element.classList.toggle('hidden');
 
 let validation_score = 0;
-let radio_check = false;
 
 //toggle modal event
 modalBtn.forEach((btn) =>
