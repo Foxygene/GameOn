@@ -22,7 +22,10 @@ let validation_score = 0;
 
 //toggle modal event
 modalBtn.forEach((btn) =>
-  btn.addEventListener('click', () => toggleHidden(modalbg))
+  btn.addEventListener('click', () => {
+    toggleHidden(modalbg);
+    form.reset();
+  })
 );
 
 modalBtn_f.forEach((btn) =>
@@ -129,4 +132,5 @@ form?.addEventListener('submit', (event) => {
   console.log(validation_score);
   console.log('form sent');
   toggleHidden(modalbg_f);
+  form.reset();
 });

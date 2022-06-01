@@ -70,40 +70,6 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    margin: 0;
-    padding: 3.5%;
-    background-color: white;
-  }
-  .modal-body {
-    margin-top: 75px;
-  }
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-  .topnav.responsive {
-    position: relative;
-  }
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-
 @media screen and (max-width: 540px) {
   .topnav a {
     display: none;
@@ -551,6 +517,44 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+@media screen and (max-width: 768px) {
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin: 0;
+    padding: 3.5%;
+    background-color: white;
+  }
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+  .topnav.responsive {
+    position: relative;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .modal-body {
+    margin-top: 75px;
+  }
+  .close {
+    top: 85px;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
