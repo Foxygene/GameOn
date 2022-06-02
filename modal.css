@@ -70,6 +70,35 @@ img {
   display: none;
 }
 
+.confirmation-block {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  left: 0;
+}
+.confirmation-text {
+  display: flex;
+  flex-direction: column-reverse;
+  text-align: center;
+  height: 50%;
+  font-size: 40px;
+}
+
+.confirmation-button {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 50%;
+}
+
+.confirmation-button button {
+  margin: 40px;
+  width: 200px;
+  align-self: center;
+}
+
 @media screen and (max-width: 540px) {
   .topnav a {
     display: none;
@@ -157,19 +186,12 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
-.bground-f {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
-}
-
 .hidden {
   display: none;
+}
+
+.invisible {
+  opacity: 0;
 }
 
 .content {
@@ -188,14 +210,6 @@ main {
 
 .modal-body {
   padding: 15px 8%;
-}
-
-.modal-body-f {
-  padding: 15px 8%;
-  padding-top: 50px;
-  margin: 15px auto;
-  display: flex;
-  flex-direction: column;
 }
 
 label {
@@ -315,6 +329,7 @@ input[data-error]::after {
   height: 32px;
   opacity: 1;
   cursor: pointer;
+  z-index: 1;
   transform: scale(0.7);
 }
 

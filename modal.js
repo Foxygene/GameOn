@@ -10,13 +10,14 @@ function editNav() {
 
 // DOM Elements
 const modalbg = document.querySelector('.bground');
-const modalbg_f = document.querySelector('.bground-f');
 const modalBtn = document.querySelectorAll('.modal-btn, .close');
-const modalBtn_f = document.querySelectorAll('.modal-btn-f, .close-f');
+const modalbg_conf = document.querySelector('.confirmation-block');
+const modalBtn_conf = document.querySelector('#end-form');
 const form = document.querySelector('#signup');
 const formData = document.querySelectorAll('.formData');
 
 const toggleHidden = (element) => element.classList.toggle('hidden');
+const toggleInvisible = (element) => element.classList.toggle('invisible');
 
 let validation_score = 0;
 
@@ -24,20 +25,34 @@ let validation_score = 0;
 modalBtn.forEach((btn) =>
   btn.addEventListener('click', () => {
     toggleHidden(modalbg);
+    if (form.classList.contains('invisible')) {
+      form.classList.remove('invisible');
+    }
+    if (!modalbg_conf.classList.contains('hidden')) {
+      modalbg_conf.classList.add('hidden');
+    }
     form.reset();
   })
 );
 
-modalBtn_f.forEach((btn) =>
-  btn.addEventListener('click', () => toggleHidden(modalbg_f))
-);
+modalBtn_conf.addEventListener('click', () => {
+  toggleHidden(modalbg);
+  if (form.classList.contains('invisible')) {
+    form.classList.remove('invisible');
+  }
+  if (!modalbg_conf.classList.contains('hidden')) {
+    debugger;
+    modalbg_conf.classList.add('hidden');
+  }
+  form.reset();
+});
 
 //validity check function
 const validitycheck = (inputElement) => {
   inputElement.setCustomValidity('');
   // console.log(inputElement);
   if (inputElement.name === 'first') {
-    if (inputElement.validity.valueMissing || inputElement.validity.tooShort) {
+    if (inputElement.value.trim().length < 2) {
       formData[0].setAttribute('data-error-visible', 'true');
       return;
     }
@@ -46,7 +61,7 @@ const validitycheck = (inputElement) => {
   }
 
   if (inputElement.name === 'last') {
-    if (inputElement.validity.valueMissing || inputElement.validity.tooShort) {
+    if (inputElement.value.trim().length < 2) {
       formData[1].setAttribute('data-error-visible', 'true');
       return;
     }
@@ -68,7 +83,9 @@ const validitycheck = (inputElement) => {
 
   if (inputElement.name === 'birthdate') {
     if (
-      inputElement.validity.typeMismatch ||
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+        inputElement.value
+      ) ||
       inputElement.validity.valueMissing
     ) {
       formData[3].setAttribute('data-error-visible', 'true');
@@ -82,7 +99,7 @@ const validitycheck = (inputElement) => {
     console.log(inputElement);
     if (
       inputElement.validity.typeMismatch ||
-      inputElement.validity.valueMissing
+      inputElement.value.trim().length < 1
     ) {
       formData[4].setAttribute('data-error-visible', 'true');
       return;
@@ -127,10 +144,9 @@ form?.addEventListener('submit', (event) => {
     console.log(validation_score);
     return;
   } else {
-    toggleHidden(modalbg);
+    toggleInvisible(form);
+    toggleHidden(modalbg_conf);
   }
   console.log(validation_score);
   console.log('form sent');
-  toggleHidden(modalbg_f);
-  form.reset();
 });
