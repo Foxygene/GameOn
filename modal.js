@@ -16,6 +16,10 @@ const modalBtn_conf = document.querySelector('#end-form');
 const form = document.querySelector('#signup');
 const formData = document.querySelectorAll('.formData');
 
+//*stackoverflow.com/questions/201323/how-can-i-validate-an-email-address-using-a-regular-expression
+const emailRegex =
+  /([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|"([]!#-[^-~ \t]|(\\[\t -~]))+")@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+/;
+
 const toggleHidden = (element) => element.classList.toggle('hidden');
 const toggleInvisible = (element) => element.classList.toggle('invisible');
 
@@ -72,7 +76,8 @@ const validitycheck = (inputElement) => {
   if (inputElement.name === 'email') {
     if (
       inputElement.validity.valueMissing ||
-      inputElement.validity.typeMismatch
+      inputElement.validity.typeMismatch ||
+      emailRegex.test(inputElement.value) === false
     ) {
       formData[2].setAttribute('data-error-visible', 'true');
       return;
@@ -83,9 +88,7 @@ const validitycheck = (inputElement) => {
 
   if (inputElement.name === 'birthdate') {
     if (
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-        inputElement.value
-      ) ||
+      inputElement.validity.typeMismatch ||
       inputElement.validity.valueMissing
     ) {
       formData[3].setAttribute('data-error-visible', 'true');
