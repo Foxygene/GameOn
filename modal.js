@@ -149,7 +149,7 @@ form?.addEventListener('submit', (event) => {
   radio_check = 0;
   TOS_check = 0;
   Array.from(event.currentTarget).forEach(validitycheck);
-  if (validation_score !== 12) {
+  if (validation_score !== 7) {
     console.log(validation_score);
     return;
   } else {
