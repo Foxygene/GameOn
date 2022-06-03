@@ -20,10 +20,14 @@ const formData = document.querySelectorAll('.formData');
 const emailRegex =
   /([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|"([]!#-[^-~ \t]|(\\[\t -~]))+")@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+/;
 
+const numberRegex = [0 - 9];
+
 const toggleHidden = (element) => element.classList.toggle('hidden');
 const toggleInvisible = (element) => element.classList.toggle('invisible');
 
 let validation_score = 0;
+let radio_check = 0;
+let TOS_check = 0;
 
 //toggle modal event
 modalBtn.forEach((btn) =>
@@ -75,8 +79,7 @@ const validitycheck = (inputElement) => {
 
   if (inputElement.name === 'email') {
     if (
-      inputElement.validity.valueMissing ||
-      inputElement.validity.typeMismatch ||
+      inputElement.value.trim().length < 2 ||
       emailRegex.test(inputElement.value) === false
     ) {
       formData[2].setAttribute('data-error-visible', 'true');
@@ -87,10 +90,7 @@ const validitycheck = (inputElement) => {
   }
 
   if (inputElement.name === 'birthdate') {
-    if (
-      inputElement.validity.typeMismatch ||
-      inputElement.validity.valueMissing
-    ) {
+    if (inputElement.value.trim().length < 8) {
       formData[3].setAttribute('data-error-visible', 'true');
       return;
     }
@@ -101,7 +101,7 @@ const validitycheck = (inputElement) => {
   if (inputElement.name === 'quantity') {
     console.log(inputElement);
     if (
-      inputElement.validity.typeMismatch ||
+      typeof inputElement === 'number' ||
       inputElement.value.trim().length < 1
     ) {
       formData[4].setAttribute('data-error-visible', 'true');
@@ -112,20 +112,24 @@ const validitycheck = (inputElement) => {
   }
 
   if (inputElement.name === 'location') {
-    if (inputElement.validity.valueMissing) {
+    if (inputElement.checked === false) {
+      if (radio_check !== 0) return;
       formData[5].setAttribute('data-error-visible', 'true');
       return;
     }
     formData[5].setAttribute('data-error-visible', 'false');
+    radio_check++;
     validation_score++;
   }
 
   if (inputElement.name === 'TOScheckbox') {
-    if (inputElement.validity.valueMissing) {
+    if (inputElement.checked === false) {
+      if (TOS_check !== 0) return;
       formData[6].setAttribute('data-error-visible', 'true');
       return;
     }
     formData[6].setAttribute('data-error-visible', 'false');
+    TOS_check++;
     validation_score++;
   }
 };
@@ -142,6 +146,8 @@ Array.from(form).forEach((formElement) => {
 form?.addEventListener('submit', (event) => {
   event.preventDefault();
   validation_score = 0;
+  radio_check = 0;
+  TOS_check = 0;
   Array.from(event.currentTarget).forEach(validitycheck);
   if (validation_score !== 12) {
     console.log(validation_score);
