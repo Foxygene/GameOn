@@ -49,7 +49,6 @@ modalBtn_conf.addEventListener('click', () => {
     form.classList.remove('invisible');
   }
   if (!modalbg_conf.classList.contains('hidden')) {
-    debugger;
     modalbg_conf.classList.add('hidden');
   }
   form.reset();
@@ -58,7 +57,6 @@ modalBtn_conf.addEventListener('click', () => {
 //validity check function
 const validitycheck = (inputElement) => {
   inputElement.setCustomValidity('');
-  // console.log(inputElement);
   if (inputElement.name === 'first') {
     if (inputElement.value.trim().length < 2) {
       formData[0].setAttribute('data-error-visible', 'true');
@@ -99,7 +97,6 @@ const validitycheck = (inputElement) => {
   }
 
   if (inputElement.name === 'quantity') {
-    console.log(inputElement);
     if (
       typeof inputElement === 'number' ||
       inputElement.value.trim().length < 1
@@ -150,12 +147,9 @@ form?.addEventListener('submit', (event) => {
   TOS_check = 0;
   Array.from(event.currentTarget).forEach(validitycheck);
   if (validation_score !== 7) {
-    console.log(validation_score);
     return;
   } else {
     toggleInvisible(form);
     toggleHidden(modalbg_conf);
   }
-  console.log(validation_score);
-  console.log('form sent');
 });
