@@ -1,6 +1,6 @@
 # GameOn
 
-[![Logo GameOn](Logo.png](https://foxygene.github.io/GameOn/)
+[![Logo GameOn](Logo.png)](https://foxygene.github.io/GameOn/)
 
 ## What is "GameOn"
 
