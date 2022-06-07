@@ -1,5 +1,18 @@
-# Projet GameOn
-1. Forkez ce repo ;
-2. Il est conseillé d'utiliser VisualStudio Code et vous pouvez utiliser Docker, mais ce n'est pas obligatoire ;
-3. Il n'y a aucune dépendance ;
-4. Vous ne devez utiliser que du CSS personnalisé et du JavaScript pur, sans jQuery, Bootstrap ou autre librairie.
+# GameOn
+
+[![Logo GameOn](Logo.png](https://foxygene.github.io/GameOn/)
+
+## What is "GameOn"
+
+GameOn is my third web project and first one using JS.
+
+It's a frontpage of a fictionnal esport tournament organisation.
+
+## What's the purpose
+
+During my web development training within the [openclassroom cursus](https://openclassrooms.com/en/paths/314-developpeur-front-end).
+I had to fix existing code and had full JS support to the form.
+
+## Usage
+
+It's only html/css/js just open the index.html file.
