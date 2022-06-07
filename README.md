@@ -6,7 +6,7 @@
 
 GameOn is my third web project and my first approach to javascript.
 
-It's a frontpage of a fictionnal esport tournament organisation.
+It's the frontpage of a fictionnal esport tournament organisation.
 
 ## What's the purpose
 
