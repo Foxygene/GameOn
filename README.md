@@ -4,14 +4,14 @@
 
 ## What is "GameOn"
 
-GameOn is my third web project and first one using JS.
+GameOn is my third web project and my first approach to javascript.
 
 It's a frontpage of a fictionnal esport tournament organisation.
 
 ## What's the purpose
 
 During my web development training within the [openclassroom cursus](https://openclassrooms.com/en/paths/314-developpeur-front-end).
-I had to fix existing code and had full JS support to the form.
+I had to fix existing code and add full JS support to the form.
 
 ## Usage
 
